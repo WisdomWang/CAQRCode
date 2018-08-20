@@ -20,6 +20,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>请允许我们使用相机用于二维码扫描</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>请允许我们访问你的照片以获取二维码</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
