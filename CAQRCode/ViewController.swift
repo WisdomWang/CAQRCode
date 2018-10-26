@@ -32,7 +32,17 @@ class ViewController: UIViewController {
     
     @objc func btnSlected() {
         
-    
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            
+            let alert = UIAlertController(title: "提示", message: "您的设备没有摄像头或者相关的驱动, 不能进行该操作！", preferredStyle: .alert)
+            let action = UIAlertAction(title: "知道了", style: .cancel) { (alert) in
+                
+            }
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+            return;
+        }
+        
         navigationController?.pushViewController(ScanVC(), animated: true)
     }
     
