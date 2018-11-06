@@ -16,34 +16,44 @@ class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigati
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        judgeCameraPermission()
         setupView()
+        judgeCameraPermission()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if session != nil {
+            initScanView()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        session?.stopRunning()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         session?.startRunning()
+//        initScanView()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        session?.stopRunning()
-    }
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        session?.stopRunning()
+//    }
     
     func judgeCameraPermission() {
         //拒绝，受限制
         let status = AVCaptureDevice.authorizationStatus(for: .video)
         if status == .restricted || status == .denied {
             print("没有权限使用！")
-        }
-        else if status == .notDetermined {
+        }else if status == .notDetermined {
          
             AVCaptureDevice.requestAccess(for: .video) { (allow) in
                 if allow {
                     print("同意了")
                     self.initSession()
-                    self.initScanView()
-                    self.session?.startRunning()
+//                    self.session?.startRunning()
+//                    self.initScanView()
                 }
                 else {
                     print("拒绝了")
@@ -51,17 +61,15 @@ class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigati
             }
             
             
-        }
-        else {
-           initSession()
+        }else {
+            initSession()
+//            session?.startRunning()
         }
     }
     
     func setupView() {
-        
         title = "扫描二维码"
-        view.backgroundColor = UIColor.white
-        
+        view.backgroundColor = UIColor.black
         let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 20))
         rightButton.setTitle("相册", for: .normal)
         rightButton.setTitleColor(UIColor.black, for: .normal)
@@ -73,22 +81,16 @@ class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigati
         lightButton.setBackgroundImage(UIImage(named: "SGQRCodeFlashlightCloseImage"), for: .selected)
         lightButton.addTarget(self, action: #selector(lightButtonClick(button:)), for: .touchUpInside)
         view.addSubview(lightButton)
-        if session != nil {
-            
-            initScanView()
-        }
-        
     }
     
     func initScanView() {
-    
         //用session生成一个AVCaptureVideoPreviewLayer添加到view的layer上，就会实时显示摄像头捕捉的内容
         let layer = AVCaptureVideoPreviewLayer(session: session!)
         layer.videoGravity = .resizeAspectFill
         layer.frame = UIScreen.main.bounds
         view.layer.insertSublayer(layer, at: 0)
-    
     }
+    
     
     func initSession() {
         
@@ -100,7 +102,7 @@ class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigati
             //设置扫描区域
             let widthS = 300 / xScreenHeight
             let heightS = 300 / xScreenWidth
-             output.rectOfInterest = CGRect(x: (1-widthS)/2, y: (1-heightS)/2, width: widthS, height: heightS)
+            output.rectOfInterest = CGRect(x: (1-widthS)/2, y: (1-heightS)/2, width: widthS, height: heightS)
             session = AVCaptureSession()
             //采集率质量
             session?.sessionPreset = .high
@@ -109,7 +111,6 @@ class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigati
             output.metadataObjectTypes = [.qr,.ean13,.ean8,.code128]
             
         } catch let err as NSError {
-            
             print("发生错误：\(String(describing: err.localizedFailureReason))")
         }
         
@@ -135,6 +136,7 @@ class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigati
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
     }
+    
     //delegate
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         playSound()
@@ -225,7 +227,9 @@ class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigati
         super.didReceiveMemoryWarning()
     }
 }
+
 class MaskView: UIView {
+    
     var lineLayer:CALayer!
     override init(frame: CGRect) {
         super.init(frame: frame)

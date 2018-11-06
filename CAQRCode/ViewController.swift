@@ -42,8 +42,9 @@ class ViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
             return;
         }
-        
-        navigationController?.pushViewController(ScanVC(), animated: true)
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        let scan = storyBoard.instantiateViewController(withIdentifier: String.init(describing: ScanVC.self))
+        navigationController?.pushViewController(scan, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
