@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 let xScreenWidth = UIScreen.main.bounds.size.width
 let xScreenHeight = UIScreen.main.bounds.size.height
@@ -35,16 +36,33 @@ class ViewController: UIViewController {
         if !UIImagePickerController.isSourceTypeAvailable(.camera) {
             
             let alert = UIAlertController(title: "提示", message: "您的设备没有摄像头或者相关的驱动, 不能进行该操作！", preferredStyle: .alert)
-            let action = UIAlertAction(title: "知道了", style: .cancel) { (alert) in
+            let action = UIAlertAction(title: "好的", style: .cancel) { (alert) in
                 
             }
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
-            return;
+            return
         }
-        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-        let scan = storyBoard.instantiateViewController(withIdentifier: String.init(describing: ScanVC.self))
-        navigationController?.pushViewController(scan, animated: true)
+        
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        if status == .restricted || status == .denied {
+            
+            let alert = UIAlertController(title: "请授权相机权限", message: "请在iPhone的\"设置-隐私-相机\"选项中,允许访问您的相机", preferredStyle: .alert)
+            let action = UIAlertAction(title: "好的", style: .cancel) { (alert) in
+                
+            }
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+            return
+            
+        } else {
+            
+            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            let scan = storyBoard.instantiateViewController(withIdentifier: String.init(describing: ScanVC.self))
+            navigationController?.pushViewController(scan, animated: true)
+        }
+        
+   
     }
     
     override func didReceiveMemoryWarning() {
