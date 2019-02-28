@@ -18,6 +18,8 @@
 		4A3FEB92212A67E900D56013 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4A3FEB91212A67E800D56013 /* sound.caf */; };
 		4A3FEB94212A6EF900D56013 /* SGQRCodeFlashlightCloseImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A3FEB93212A6EF900D56013 /* SGQRCodeFlashlightCloseImage@2x.png */; };
 		4A3FEB96212A6F0600D56013 /* SGQRCodeFlashlightOpenImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A3FEB95212A6F0500D56013 /* SGQRCodeFlashlightOpenImage@2x.png */; };
+		4A759BE1222780B5001AA8D3 /* BuildQRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A759BE0222780B5001AA8D3 /* BuildQRCodeVC.swift */; };
+		4A759BE322278FB4001AA8D3 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A759BE222278FB4001AA8D3 /* header.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		4A3FEB91212A67E800D56013 /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.caf; sourceTree = "<group>"; };
 		4A3FEB93212A6EF900D56013 /* SGQRCodeFlashlightCloseImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SGQRCodeFlashlightCloseImage@2x.png"; sourceTree = "<group>"; };
 		4A3FEB95212A6F0500D56013 /* SGQRCodeFlashlightOpenImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SGQRCodeFlashlightOpenImage@2x.png"; sourceTree = "<group>"; };
+		4A759BE0222780B5001AA8D3 /* BuildQRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildQRCodeVC.swift; sourceTree = "<group>"; };
+		4A759BE222278FB4001AA8D3 /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,12 +109,14 @@
 		4A32F58E2122C235001C4FD6 /* CAQRCode */ = {
 			isa = PBXGroup;
 			children = (
+				4A759BE222278FB4001AA8D3 /* header.png */,
 				4A3FEB91212A67E800D56013 /* sound.caf */,
 				4A3FEB95212A6F0500D56013 /* SGQRCodeFlashlightOpenImage@2x.png */,
 				4A3FEB93212A6EF900D56013 /* SGQRCodeFlashlightCloseImage@2x.png */,
 				4A32F58F2122C235001C4FD6 /* AppDelegate.swift */,
 				4A32F5912122C235001C4FD6 /* ViewController.swift */,
 				4A32F5BD2122C2D1001C4FD6 /* ScanVC.swift */,
+				4A759BE0222780B5001AA8D3 /* BuildQRCodeVC.swift */,
 				4A32F5932122C235001C4FD6 /* Main.storyboard */,
 				4A32F5962122C237001C4FD6 /* Assets.xcassets */,
 				4A32F5982122C237001C4FD6 /* LaunchScreen.storyboard */,
@@ -246,6 +252,7 @@
 				4A3FEB96212A6F0600D56013 /* SGQRCodeFlashlightOpenImage@2x.png in Resources */,
 				4A3FEB94212A6EF900D56013 /* SGQRCodeFlashlightCloseImage@2x.png in Resources */,
 				4A3FEB92212A67E900D56013 /* sound.caf in Resources */,
+				4A759BE322278FB4001AA8D3 /* header.png in Resources */,
 				4A32F5952122C235001C4FD6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A32F5922122C235001C4FD6 /* ViewController.swift in Sources */,
+				4A759BE1222780B5001AA8D3 /* BuildQRCodeVC.swift in Sources */,
 				4A32F5902122C235001C4FD6 /* AppDelegate.swift in Sources */,
 				4A32F5BE2122C2D1001C4FD6 /* ScanVC.swift in Sources */,
 			);

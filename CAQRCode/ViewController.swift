@@ -23,11 +23,19 @@ class ViewController: UIViewController {
     func setupView() {
         
         title = "二维码"
-        let btn = UIButton(frame: CGRect(x: xScreenWidth/2-50, y: 300, width: 100, height: 30))
-        btn.setTitle("扫描二维码", for:.normal)
-        btn.setTitleColor(UIColor.blue, for: .normal)
-        btn.addTarget(self, action: #selector(btnSlected), for: .touchUpInside)
-        view.addSubview(btn)
+        
+        let scanBtn = UIButton(frame: CGRect(x: xScreenWidth/2-50, y: 300, width: 100, height: 30))
+        scanBtn.setTitle("扫描二维码", for:.normal)
+        scanBtn.setTitleColor(UIColor.blue, for: .normal)
+        scanBtn.addTarget(self, action: #selector(btnSlected), for: .touchUpInside)
+        view.addSubview(scanBtn)
+        
+        let buildBtn = UIButton(frame: CGRect(x: xScreenWidth/2-50, y: 400, width: 100, height: 30))
+        buildBtn.setTitle("生成二维码", for:.normal)
+        buildBtn.setTitleColor(UIColor.blue, for: .normal)
+        buildBtn.addTarget(self, action: #selector(buildBtnClick), for: .touchUpInside)
+        view.addSubview(buildBtn)
+        
         
     }
     
@@ -62,7 +70,13 @@ class ViewController: UIViewController {
             navigationController?.pushViewController(scan, animated: true)
         }
         
-   
+    }
+    
+    @objc func buildBtnClick () {
+        
+        let vc = BuildQRCodeVC()
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     override func didReceiveMemoryWarning() {

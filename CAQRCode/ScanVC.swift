@@ -33,14 +33,8 @@ class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigati
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         session?.startRunning()
-//        initScanView()
     }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        session?.stopRunning()
-//    }
-    
+
     func judgeCameraPermission() {
         //拒绝，受限制
         let status = AVCaptureDevice.authorizationStatus(for: .video)
@@ -52,8 +46,6 @@ class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigati
                 if allow {
                     print("同意了")
                     self.initSession()
-//                    self.session?.startRunning()
-//                    self.initScanView()
                 }
                 else {
                     print("拒绝了")
@@ -63,7 +55,6 @@ class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigati
             
         }else {
             initSession()
-//            session?.startRunning()
         }
     }
     
@@ -145,7 +136,6 @@ class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigati
     
             let metadata = metadataObjects.first  as! AVMetadataMachineReadableCodeObject
             let alert = UIAlertController(title: "扫描结果", message:metadata.stringValue, preferredStyle:.alert)
-            //let action = UIAlertAction(title: "确定", style: .default, handler: nil)
             let action = UIAlertAction(title: "确定", style: .default) { (action) in
                 self.session?.startRunning()
             }
@@ -201,7 +191,7 @@ class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigati
             device?.torchMode = .on
         }
         device?.unlockForConfiguration()
-        
+    
     }
     
     func closeTorchLiaght() {
