@@ -22,7 +22,7 @@ class ViewController: UIViewController {
 
     func setupView() {
         
-        title = "二维码"
+        title = "关于二维码"
         
         let scanBtn = UIButton(frame: CGRect(x: xScreenWidth/2-50, y: 300, width: 100, height: 30))
         scanBtn.setTitle("扫描二维码", for:.normal)
@@ -35,8 +35,6 @@ class ViewController: UIViewController {
         buildBtn.setTitleColor(UIColor.blue, for: .normal)
         buildBtn.addTarget(self, action: #selector(buildBtnClick), for: .touchUpInside)
         view.addSubview(buildBtn)
-        
-        
     }
     
     @objc func btnSlected() {

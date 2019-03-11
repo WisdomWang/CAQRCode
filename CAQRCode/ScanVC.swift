@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Photos
+
 class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
 
     //创建一个摄像头画面捕获类
@@ -51,8 +52,6 @@ class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigati
                     print("拒绝了")
                 }
             }
-            
-            
         }else {
             initSession()
         }
@@ -104,7 +103,6 @@ class ScanVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UINavigati
         } catch let err as NSError {
             print("发生错误：\(String(describing: err.localizedFailureReason))")
         }
-        
     }
     
     @objc func gotoPhoto() {

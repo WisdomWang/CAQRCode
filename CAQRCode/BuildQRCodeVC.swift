@@ -51,8 +51,6 @@ class BuildQRCodeVC: UIViewController {
             if var image = image {
                 
                 //给头像加一个白色圆边（如果不需要直接忽略）
-               
-                
                 image = circleImageWithImage(sourceImage: image, borderWidth: 10, borderColor: .white)
                 //合成图片
                 let newImage = syntheticImage(image: qrCodeImage, iconImage: image, width: 100, height: 100)
